@@ -3,6 +3,11 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+# my stuff
+demo_*/pbk_ili9488.py
+demo_*/sprite_handler.py
+demo_*/sys_font.py
+
 # C extensions
 *.so
 
