@@ -95,7 +95,6 @@ class SpriteHandler :
         self.image_columns = self.image_count // self.image_rows
         self.buffer_byte_width = image_width * self.image_columns * self.image_pixel_size
  
-
     ## load_raw_file - reads raw sprite file and loads it to the buffer
     def load_raw_file (self ,
                         file_path ,
@@ -105,11 +104,12 @@ class SpriteHandler :
                         image_pixel_size = 2 ,
                         variable_size = False ,
                         buffer_width = None) :
+        print (file_path)
         try :
             with open (file_path, "rb") as raw_file :
                 buffer = raw_file.read ()
         except Exception as e :
-            print (e)
+            print (file_path, e)
             return
         self.file_path = file_path
         self.load_raw_sprite (bytes (buffer),

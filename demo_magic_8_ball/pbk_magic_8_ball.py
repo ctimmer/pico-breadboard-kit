@@ -280,18 +280,6 @@ while quit_button.value() != 0 :
         get_answer ()       # display random answer
         time.sleep (1.3)    # debounce button input
     else :
-        time.sleep (0.1)    # consentration time
+        time.sleep (0.1)    # concentration time
 
 display_answer (GOODBYE_IDX)
-
-'''
-## TESTING:
-
-display_answer_string ("ABCDEFGHIJKLMNOPQRSTUVWXYZ.,'-", 10, 300)
-
-for count in range (0, len (ANSWER_LINES)) :
-    #get_answer ()
-    display_answer(count)
-    #break
-    time.sleep (1.5)
-'''

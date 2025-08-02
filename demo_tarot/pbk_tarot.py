@@ -192,7 +192,7 @@ def do_tarot_reading (tarot_ids ,
                               y_pos - 24,
                               tarot_spread[idx],
                               text_color=WHITE)
-        #print ("reading_id:",reading_id)
+        # print ("reading_id:",reading_id)
         card_reversed = random.choice([True, False])
         reading_sprite = tarot_image.get_index_id_sprite (reading_id, inverted=card_reversed)
         display.draw_sprite (reading_sprite, x=x_pos, y=y_pos, w=sprite_width, h=sprite_height)
