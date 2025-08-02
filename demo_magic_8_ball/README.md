@@ -30,7 +30,7 @@ Button 2 - Quit
 - magic8ans227x200.raw
   - Answer background image
 - magic8char327x17.raw
- - Character images for answer
+  - Character images for answer
 - mpremote.sh
   - linux bash script to run demo via mpremote
   - May not run because of additional memory requirements
