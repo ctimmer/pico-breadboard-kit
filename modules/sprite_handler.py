@@ -104,7 +104,7 @@ class SpriteHandler :
                         image_pixel_size = 2 ,
                         variable_size = False ,
                         buffer_width = None) :
-        print (file_path)
+        #print (file_path)
         try :
             with open (file_path, "rb") as raw_file :
                 buffer = raw_file.read ()

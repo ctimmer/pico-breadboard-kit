@@ -12,7 +12,7 @@ run pbk_wheel_of_fortune.py
 
 ## Demonstrates
 
-- Fixed character font board sprite images
+- Fixed pitch character font board sprite images
 - Accessing sprite character images via letter id
 
 ## Requires

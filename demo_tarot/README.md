@@ -20,6 +20,8 @@ Button 2 - Quit
 
 - Sprite sheet with same size images arranged in 2 rows
 - Accessing sprite images via id
+- Button 1 Show tarot reading
+- Button 2 Quit
 
 ## Requires
 
