@@ -11,6 +11,7 @@
   - ST7796SU1
   - Controller (modified): modules/pbk_ili9488.py
   - [Source](https://github.com/QiaoTuCodes/MicroPython-_ILI9488/tree/main), search "my stuff" for changes
+  - The controller was also used to develop the sprite_handler module
 - Display Touch
   - Haven't figured this out yet :frowning:
 - Buzzer
@@ -28,3 +29,27 @@
 - Buttons
   - BTN1: GP15
   - BTN2: GP14
+
+## Directories
+
+- demo_magic_8_ball
+  - Implementation of the magic 8 ball toy
+  - If you haven't heard of this toy, you are not old enough
+- demo_nixie_display
+  - Simulates nixie tube numeric display
+- demo_tarot
+  - Implementation of Tarot card readings (fortune telling)
+- demo_wheel_of_fortune
+  - Implementation of Wheel of Fortune game board
+  - Could be used for a full WOF application
+- images
+  - glad.raw - displayed by pbk_test.py
+- modules
+  - pbk_ili9488.py modified display controller
+  - sprite_handler.py - Loads sprite sheet and extracts images
+  - sys_font.py - simple pixel oriented character font
+
+## Files
+
+- pbk_test.py - Simple component test demo
+- README.md - This documentation file
