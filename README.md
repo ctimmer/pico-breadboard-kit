@@ -9,8 +9,8 @@
   - Tests each component
 - Display
   - ST7796SU1
-  - Controller (modified): modules/pbk_ili9488.py
-  - [Source](https://github.com/QiaoTuCodes/MicroPython-_ILI9488/tree/main), search "my stuff" for changes
+  - Controller (modified): modules/pbk_ili9488.py, search "my stuff" for changes
+  - [Original Source](https://github.com/QiaoTuCodes/MicroPython-_ILI9488/tree/main)
   - The controller was also used to develop the sprite_handler module
 - Display Touch
   - Haven't figured this out yet :frowning:
