@@ -48,7 +48,7 @@ DISPLAY_WIDTH = 480
 DISPLAY_HEIGHT = 320
 
 def solve_it (wof) :
-    delay_time = 0.1
+    delay_time = 0.2
 
     choices_left = []
     for char in "BCDFGHJKLMNPQRSTVWXYZ" :

@@ -1,6 +1,6 @@
-# pico-breadboard-kit - Tarot card image demo
+# Tarot Card Reading Demo
 
-Displays all the terot cards
+Displays all the tarot cards
 
 Displays all the cards inverted
 
@@ -33,7 +33,7 @@ Button 2 - Quit
 ## Files
 
 - pbk_tarot.py
-  - demostration application
+  - demonstration application
 - tarot240x300.raw
   - Very small tarot card images that will fit on the display
 - tarot280x300.raw

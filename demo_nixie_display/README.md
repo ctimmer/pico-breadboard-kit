@@ -1,4 +1,4 @@
-# pico-breadboard-kit - nixie tube image demo
+# Nixie Tube demo
 
 Displays nixie sprite sheet file
 
@@ -12,8 +12,11 @@ run pbk_nixie_display.py
 
 ## Demonstrates
 
-- Sprite sheet with same size images arranged in 2 rows
-- Accessing sprite images via index
+- Images
+  - Display image from file
+  - Sprite sheet with same size images arranged in 2 rows
+  - Accessing sprite images via index
+- Button input
 
 ## Requires
 
@@ -24,7 +27,7 @@ run pbk_nixie_display.py
 ## Files
 
 - pbk_nixie_display.py
-  - demostration application
+  - demonstration application
 - nixie360x98.raw
   - nixie sprite sheet image file
 - mpremote.sh

@@ -1,4 +1,4 @@
-# pico-breadboard-kit - Wheel of Fortune image demo
+# Wheel of Fortune Demo
 
 Displays Wheel of Fortune game show board
 
@@ -28,7 +28,7 @@ run pbk_wheel_of_fortune.py
 - wheel_of_fortune.py
   - WOF module that controls the game board
 - wof-char120x76.raw
-  - Dispalys a smaller WOF board characters that could be used on small displays
+  - Displays a smaller WOF board characters that could be used on small displays
   - set SMALL to True in wheel_of_fortune.py
 - wof-char240x152.raw
   - Full sized WOF board characters

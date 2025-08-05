@@ -1,6 +1,6 @@
-# pico-breadboard-kit - magic 8 ball image demo
+# Magic 8 Ball Demo
 
-Displays random answers
+Displays random answers to life's questions
 
 ## Usage
 
@@ -14,8 +14,11 @@ Button 2 - Quit
 
 ## Demonstrates
 
-- Sprite sheet with variable sized images
-- Using sprite sheet for character font
+- Displaying images
+  - Image from file
+  - Sprite sheet with variable sized images
+  - Using sprite sheet for character font
+- Button input
 
 ## Requires
 
@@ -26,7 +29,7 @@ Button 2 - Quit
 ## Files
 
 - pbk_magic_8_ball.py
-  - demostration application
+  - demonstration application
 - magic8ans227x200.raw
   - Answer background image
 - magic8char327x17.raw

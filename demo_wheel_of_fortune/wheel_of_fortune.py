@@ -23,7 +23,7 @@
 # THE SOFTWARE.
 ################################################################################
 #
-# Pico Breadboard Kit - Wheel of Fortune
+# Wheel of Fortune board controller
 #
 
 from pbk_ili9488 import color565
