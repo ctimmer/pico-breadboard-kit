@@ -7,6 +7,8 @@ __pycache__/
 demo_*/pbk_ili9488.py
 demo_*/sprite_handler.py
 demo_*/sys_font.py
+demo_*/Doxyfile
+demo_*/html
 
 # C extensions
 *.so

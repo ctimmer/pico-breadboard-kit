@@ -110,69 +110,52 @@ if SMALL :
     Y_PADDING = 3
     SPRITE_FILE = "wof-char120x76.raw"   # text
 
+## Documentation for a class.
+#
+#  More details.
 class WheelOfFortune :
+    ## The constructor.
+    #  @param self The object pointer.
+    #  @param display Display controller.
+    ## @var display
+    #  a member variable.
     def __init__ (self ,
                   display) :
+        ## Updates display
         self.display = display
+        ## Interface to sprite sheets
         self.images = SpriteHandler ()
         self.images.load_raw_file (SPRITE_FILE ,
                         image_width = CHAR_WIDTH ,
                         image_height = CHAR_HEIGHT ,
                         image_rows = SPRITE_FILE_ROWS)
         self.images.buffer_images ()  # may not have enough mem for this
+        ## For restricting guesses
         self.vowels = "AEIOU"
+        ## Automatic guesses for bonus round
         self.bonus_guesses = "RSTLNE"
+        ## 
         self.board_characters = {}
+        ## Board layout
         self.board_lines = BOARD_LINES
-        self.board_linesREMOVE = [
-            { # line 1
-            "length" : 12 ,
-            "x_board" : 1 ,
-            "y_board" : 0 ,
-            "text" : "" ,
-            "space_sub" : "#"
-            } ,
-            { # line 2
-            "length" : 14 ,
-            "x_board" : 0 ,
-            "y_board" : 1 ,
-            "text" : "" ,
-            "space_sub" : "#"
-            } ,
-            { # line 3
-            "length" : 14 ,
-            "x_board" : 0 ,
-            "y_board" : 2 ,
-            "text" : "" ,
-            "space_sub" : "#"
-            } ,
-            { # line 4
-            "length" : 12 ,
-            "x_board" : 1 ,
-            "y_board" : 3 ,
-            "text" : "" ,
-            "space_sub" : "#"
-            } ,
-            { # category
-            "length" : 14 ,
-            "x_board" : 0 ,
-            "y_board" : 5 ,
-            "text" : "misc" ,
-            "space_sub" : " "
-            }
-            ]
+        ## Category line
         self.category_idx = 4
         self.initialize_board ()
+        ## Text of game board
         self.complete_phrase = ""
+        ## Initial game board display
         self.set_lines ([
             "" ,
             "wheel of" ,
             "fortune"
             ])
+        ## Initial game board category
         self.set_category ("game show")
         self.initialize_game ()
         self.show_board ()
 
+    ## Initialize the game board.
+    #  @param self The object pointer.
     def initialize_board (self) :
         self.display.clear (DISPLAY_BG)
         self.display.fill_rectangle(x=BOARD_X_POSITION,
@@ -184,11 +167,14 @@ class WheelOfFortune :
             line_data ["text"] = ""
         self.clear_board ()
 
-    def guess_character (self, char, ignore_vowels = False) :
+    ## Test if letter is part of the game board.
+    #  @param char Character to be tested.
+    #  @param allow_vowels Set to True if test character is vowel.
+    def guess_character (self, char, allow_vowels = False) :
         if not char in self.board_characters :
             return False
         if char in self.vowels \
-        and not ignore_vowels :
+        and not allow_vowels :
             return False
         if not self.board_characters[char]["hide"] :
             return False
@@ -196,10 +182,12 @@ class WheelOfFortune :
         for _, xy_board in enumerate (self.board_characters[char]["positions"]) :
             self.board_sprite (char, xy_board[0], xy_board[1])
         return True
+
+    ## Buy a vowel
     def guess_vowel (self, char) :
         if char not in self.vowels :
             return False
-        return self.guess_character (char, ignore_vowels=True)
+        return self.guess_character (char, allow_vowels=True)
 
     def clear_board (self) :
         for line_idx, line_data in enumerate (self.board_lines) :
@@ -209,6 +197,7 @@ class WheelOfFortune :
             for idx in range (0,line_data ["length"]) :
                 self.board_sprite (space_sub, x_board, y_board)
                 x_board += 1
+    ## Show all game board letters
     def show_board (self) :
         for _, (char, char_entry) in enumerate (self.board_characters.items()) :
             if not char_entry ["hide"] :
@@ -262,7 +251,7 @@ class WheelOfFortune :
                 x_board += 1
         if bonus_round :
             for _, char in enumerate (self.bonus_guesses) :
-                self.guess_character (char, ignore_vowels = True)
+                self.guess_character (char, allow_vowels = True)
 
     def board_sprite (self, sprite_char, x_board, y_board) :
         x_pos = BOARD_X_OFFSET + (x_board * (CHAR_WIDTH + X_PADDING))
@@ -279,26 +268,32 @@ class WheelOfFortune :
                                     y=y_pos,
                                     w=CHAR_WIDTH,
                                     h=CHAR_HEIGHT)
-#print (gc.mem_free ())
-# If you DON'T display images:
-#spi = SPI(0, baudrate=270_000_000, sck=Pin(2), mosi=Pin(3), phase=0, polarity=0)
-# If you DO display images:
+
 if __name__ == "__main__" :
     import time
     from machine import SPI, Pin
     from pbk_ili9488 import Display
-
-    spi = SPI(0, baudrate=100_000_000, sck=Pin(2), mosi=Pin(3), phase=0, polarity=0)
+    #
+    SPI_ID = 0
+    BAUDRATE = 100_000_000
+    SCK_PIN = 2
+    MOSI_PIN = 3
+    CS_PIN = 5
+    DC_PIN = 6
+    RST_PIN = 7
+    DISPLAY_WIDTH = 480
+    DISPLAY_HEIGHT = 320
+    #
+    spi = SPI(SPI_ID, baudrate=BAUDRATE, sck=Pin(SCK_PIN), mosi=Pin(MOSI_PIN))
     display = Display (spi = spi ,
-                    cs = Pin (5) ,
-                    dc = Pin (6) ,
-                    rst = Pin (7) ,
-                    width = 480 ,
-                    height = 320)
-#
+                        cs = Pin (CS_PIN) ,
+                        dc = Pin (DC_PIN) ,
+                        rst = Pin (RST_PIN) ,
+                        width = DISPLAY_WIDTH ,
+                        height = DISPLAY_HEIGHT)
+    #
     wof = WheelOfFortune (display)
     time.sleep (2.0)
-    #wof.initialize_board ()
     wof.initialize_game (bonus_round=False ,
                         category="phrase" ,
                         lines=["give","yourself","a round of","applause"])
@@ -308,18 +303,11 @@ if __name__ == "__main__" :
         guess = wof.guess_character (char)
         print ("Guessing:", char, guess)
         if guess :
-            time.sleep (0.2)
+            time.sleep (0.5)
 
     for char in "AEIOU" :
         guess = wof.guess_vowel (char)
         print ("Guessing (vowels):", char, guess)
         if guess :
-            time.sleep (0.2)
+            time.sleep (0.5)
 
-    '''
-    wof.initialize_game (bonus_round=False ,
-                        category="test type" ,
-                        lines=["","test"])
-    time.sleep (2.0)
-    wof.show_board ()
-    '''
