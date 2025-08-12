@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 
 # my stuff
+*.swp
 demo_*/pbk_ili9488.py
 demo_*/sprite_handler.py
 demo_*/sys_font.py

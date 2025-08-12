@@ -166,13 +166,14 @@ class SpriteHandler :
         buffer_offset += (x_pos * self.image_pixel_size)
         sprite_image_offset = ((width) - 1) * self.image_pixel_size
         for img_idx in range (0, height) :
-            buffer_pos = 0
-            for _ in range (0, width) :
-                sprite_image [sprite_image_offset:(sprite_image_offset + self.image_pixel_size)] \
-                    = self.buffer [buffer_offset + buffer_pos
-                                   :buffer_offset + buffer_pos + self.image_pixel_size]
-                sprite_image_offset -= self.image_pixel_size
-                buffer_pos += self.image_pixel_size
+            buffer_pos = buffer_offset
+            for _ in range (width) :
+                for _ in range (self.image_pixel_size) :
+                    sprite_image [sprite_image_offset] \
+                        = self.buffer [buffer_pos] # + color_idx]
+                    buffer_pos += 1
+                    sprite_image_offset -= 1
+                #sprite_image_offset -= self.image_pixel_size
             buffer_offset -= self.buffer_byte_width     # Previous image row in buffer
             sprite_image_offset += (width * 2) * self.image_pixel_size # next sprite row
         return bytes (sprite_image)
@@ -184,6 +185,14 @@ class SpriteHandler :
         #print (f"i_to_xy:idx={index} x={x_pos} y={y_pos}")
         return x_pos, y_pos
 
+    def get_index_sprite_data (self, index) :
+        x, y = self.index_to_xy (index)
+        return {
+            "x" : x ,
+            "y" : y ,
+            "w" : self.image_width ,
+            "h" : self.image_height
+            }
     ## get_index_sprite - return image via index
     def get_index_sprite (self, index, inverted = False) :
         if self.image_count <= 0 :
