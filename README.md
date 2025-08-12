@@ -37,6 +37,8 @@
   - If you haven't heard of this toy, you are not old enough
 - demo_nixie_display
   - Simulates nixie tube numeric display
+- demo_odometer
+  - Simulates a mechanical odometer
 - demo_tarot
   - Implementation of Tarot card readings (fortune telling)
 - demo_wheel_of_fortune

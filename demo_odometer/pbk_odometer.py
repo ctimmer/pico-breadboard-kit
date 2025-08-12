@@ -89,7 +89,6 @@ sysfont = SysFont (display)
 
 odom_images = SpriteHandler ()
 
-
 ODOMETER = []
 digit_data = {}
 
@@ -230,6 +229,36 @@ def adjust_odometer (increment = 0) :
     elif odometer_int < 0 :
         odometer_int = ODOMETER_MAX
 
+def odometer_increment (increment = 1) :
+    global odometer_int
+    global odometer_str
+    inc_count = increment
+    inc_value = 1
+    inc_positive = increment >= 0
+    if not inc_positive :
+        inc_value = -1
+        inc_count = abs (increment)
+    while inc_count > 0 :
+        adjust_odometer (inc_value)
+        new_str = ODOMETER_FORMAT.format (odometer_int)
+        ## Make a list of all digit indexes that have changed
+        change_list = []
+        for digit_idx, digit in enumerate (odometer_str) :
+            if digit != new_str [digit_idx] :
+                change_list.append (digit_idx)  # digit changed
+        ## Scroll changed digits
+        for scroll_level in range (1,5) :
+            for digit_idx in change_list :
+                scroll_digit (odometer_str [digit_idx] ,
+                                scroll_level ,
+                                inc_positive ,
+                                ODOMETER [digit_idx])
+            time.sleep (0.02)
+        odometer_str = new_str
+        inc_count -= 1
+
+# end odometer_increment #
+
 def odometer_init (start=0) :
     global ODOMETER
     global odometer_int
@@ -272,34 +301,8 @@ def odometer_init (start=0) :
             down_digit = 9
         digit_data [digit_key]["prev"] = str (down_digit)
 
-def odometer_increment (increment = 1) :
-    global odometer_int
-    global odometer_str
-    inc_count = increment
-    inc_value = 1
-    inc_positive = increment >= 0
-    if not inc_positive :
-        inc_value = -1
-        inc_count = abs (increment)
-    while inc_count > 0 :
-        adjust_odometer (inc_value)
-        new_str = ODOMETER_FORMAT.format (odometer_int)
-        ## Make a list of all digit indexes that have changed
-        change_list = []
-        for digit_idx, digit in enumerate (odometer_str) :
-            if digit != new_str [digit_idx] :
-                change_list.append (digit_idx)  # digit changed
-        ## Scroll changed digits
-        for scroll_level in range (1,5) :
-            for digit_idx in change_list :
-                scroll_digit (odometer_str [digit_idx] ,
-                                scroll_level ,
-                                inc_positive ,
-                                ODOMETER [digit_idx])
-            time.sleep (0.02)
-        odometer_str = new_str
-        inc_count -= 1
-    
+# end odometer_init #
+
 ################################################################################
 
 odom_images.load_raw_file (OD_DIGIT_FILE ,
